@@ -3,8 +3,8 @@ package minhash
 import (
 	"unsafe"
 
-	"github.com/koykov/simd/memclr64"
-	"github.com/koykov/simd/memset64"
+	"github.com/koykov/simd/memclr"
+	"github.com/koykov/simd/memset"
 )
 
 type Vector interface {
@@ -45,7 +45,7 @@ func (v *DefaultVector) SetMin(pos, val uint64) {
 }
 
 func (v *DefaultVector) Memset(val uint64) {
-	memset64.Memset(*v, val)
+	memset.Memset64(*v, val)
 }
 
 func (v *DefaultVector) Get(pos uint64) uint64 {
@@ -62,5 +62,5 @@ func (v *DefaultVector) Len() uint64 {
 }
 
 func (v *DefaultVector) Reset() {
-	memclr64.ClearUnsafe(unsafe.Pointer(&(*v)[0]), len(*v)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&(*v)[0]), len(*v)*8)
 }

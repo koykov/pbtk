@@ -6,7 +6,7 @@ import (
 	"math"
 
 	"github.com/koykov/pbtk"
-	"github.com/koykov/simd/memclr64"
+	"github.com/koykov/simd/memclr"
 )
 
 const (
@@ -56,7 +56,7 @@ func (vec *syncvec) size() uint64 {
 }
 
 func (vec *syncvec) reset() {
-	memclr64.ClearBytes(vec.buf)
+	memclr.Clear(vec.buf)
 }
 
 func (vec *syncvec) writeTo(w io.Writer) (n int64, err error) {
