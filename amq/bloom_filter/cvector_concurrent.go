@@ -17,6 +17,7 @@ const (
 
 // Concurrent counting vector implementation.
 type ccnvector struct {
+	bitvector.Interface
 	buf []uint32
 	lim uint64
 	s   uint64

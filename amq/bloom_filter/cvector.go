@@ -8,7 +8,7 @@ import (
 
 	"github.com/koykov/bitvector"
 	"github.com/koykov/pbtk"
-	"github.com/koykov/simd/memclr64"
+	"github.com/koykov/simd/memclr"
 )
 
 const (
@@ -18,6 +18,7 @@ const (
 
 // Synchronous counting vector implementation.
 type cvector struct {
+	bitvector.Interface
 	buf []uint32
 	s   uint64
 }
@@ -91,7 +92,7 @@ func (vec *cvector) Clone() bitvector.Interface {
 }
 
 func (vec *cvector) Reset() {
-	memclr64.ClearUnsafe(unsafe.Pointer(&vec.buf[0]), len(vec.buf)*4)
+	memclr.ClearUnsafe(unsafe.Pointer(&vec.buf[0]), len(vec.buf)*4)
 	vec.s = 0
 }
 

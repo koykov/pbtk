@@ -6,7 +6,7 @@ import (
 	"unsafe"
 
 	"github.com/koykov/pbtk"
-	"github.com/koykov/simd/memclr64"
+	"github.com/koykov/simd/memclr"
 )
 
 const (
@@ -29,7 +29,7 @@ func (vec *syncvec64) estimate(pos uint64) int64 {
 }
 
 func (vec *syncvec64) reset() {
-	memclr64.ClearUnsafe(unsafe.Pointer(&vec.buf[0]), len(vec.buf)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&vec.buf[0]), len(vec.buf)*8)
 }
 
 func (vec *syncvec64) readFrom(r io.Reader) (n int64, err error) {

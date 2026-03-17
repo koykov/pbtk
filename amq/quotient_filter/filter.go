@@ -7,7 +7,7 @@ import (
 
 	"github.com/koykov/pbtk"
 	"github.com/koykov/pbtk/amq"
-	"github.com/koykov/simd/memclr64"
+	"github.com/koykov/simd/memclr"
 )
 
 // Quotient filter implementation.
@@ -304,7 +304,7 @@ func (f *filter[T]) Reset() {
 	if f.once.Do(f.init); f.err != nil {
 		return
 	}
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.vec[0]), len(f.vec)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.vec[0]), len(f.vec)*8)
 	f.s = 0
 }
 

@@ -10,7 +10,7 @@ import (
 
 	"github.com/koykov/pbtk"
 	"github.com/koykov/pbtk/amq"
-	"github.com/koykov/simd/memclr64"
+	"github.com/koykov/simd/memclr"
 )
 
 const (
@@ -273,15 +273,15 @@ func (f *filter[T]) Reset() {
 	f.len, f.cap = 0, 0
 	f.segc, f.segcl = 0, 0
 	f.segl, f.seglmask = 0, 0
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.vec[0]), len(f.vec))
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.hkeys[0]), len(f.hkeys)*8)
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.revo[0]), len(f.revo)*8)
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.revh[0]), len(f.revh))
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.t2c[0]), len(f.t2c))
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.t2h[0]), len(f.t2h)*8)
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.a[0]), len(f.a)*4)
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.spos[0]), len(f.spos)*8)
-	memclr64.ClearUnsafe(unsafe.Pointer(&f.h012[0]), len(f.h012)*4)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.vec[0]), len(f.vec))
+	memclr.ClearUnsafe(unsafe.Pointer(&f.hkeys[0]), len(f.hkeys)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.revo[0]), len(f.revo)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.revh[0]), len(f.revh))
+	memclr.ClearUnsafe(unsafe.Pointer(&f.t2c[0]), len(f.t2c))
+	memclr.ClearUnsafe(unsafe.Pointer(&f.t2h[0]), len(f.t2h)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.a[0]), len(f.a)*4)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.spos[0]), len(f.spos)*8)
+	memclr.ClearUnsafe(unsafe.Pointer(&f.h012[0]), len(f.h012)*4)
 
 	f.err = nil
 	f.once = sync.Once{}
